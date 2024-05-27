@@ -37,7 +37,7 @@ jobs:
       - name: Install serverless
         run: npm install -g serverless
       - name: Set serverless config
-        run: serverless config credentials --key ${{ secrets.AWS_ACCESS_KEY_ID }} --secret ${{ secrets.AWS_ACCESS_SECRET }} --provider aws --overwrite
+        run: serverless config credentials --key ${{ secrets.AWS_ACCESS_KEY_ID }} --secret ${{ secrets.AWS_ACCESS_SECRET }} --provider aws
       - name: Install npm dependencies
         run: npm install
       - name: Deploy service
