@@ -1,0 +1,17 @@
+service: notes-backend
+
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: nodejs16.x
+  region: eu-west-1
+  stage: prod
+  memorySize: 128
+  timeout: 5
+  endpointType: REGIONAL
+
+functions:
+  hello:
+    handler: handler.hello
+
