@@ -35,9 +35,9 @@ jobs:
       - name: Install nodejs 3
         run: sudo apt-get update && sudo apt-get install nodejs -y
       - name: Install serverless
-        run: npm install -g serverless
+        run: npm install -g serverless@3.38.0
       - name: Set serverless config
-        run: serverless config credentials --key ${{ secrets.AWS_ACCESS_KEY_ID }} --secret ${{ secrets.AWS_ACCESS_SECRET }} --provider aws
+        run: serverless config credentials --key ${{ secrets.AWS_ACCESS_KEY_ID }} --secret ${{ secrets.AWS_ACCESS_SECRET }} --provider aws --overwrite
       - name: Install npm dependencies
         run: npm install
       - name: Deploy service
