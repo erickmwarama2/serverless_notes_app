@@ -1,5 +1,5 @@
 const AWS = require('aws-sdk');
-AWS.config.update({ region: 'eu-west-2'});
+AWS.config.update({ region: process.env.AWS_REGION});
 const util = require('./util.js');
 const moment = require('moment');
 const { v4: uuidv4 } = require('uuid');
