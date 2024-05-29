@@ -41,4 +41,4 @@ jobs:
         run: npm install
       - name: Deploy service
         working-directory: ./notes-backend
-        run: serverless deploy --verbose
+        run: serverless deploy --region eu-west-1 --verbose
