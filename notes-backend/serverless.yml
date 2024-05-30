@@ -70,7 +70,6 @@ custom:
     - app_user_name
   customDomain:
     domainName: soulandmindconsultant.com
-    basePath: 'v1'
     stage: ${self:provider.stage}
     certificateName: soulandmindconsultant.com
     createRoute53Record: true
