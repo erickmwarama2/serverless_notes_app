@@ -68,6 +68,12 @@ custom:
     - X-Amz-User-Agent
     - app_user_id
     - app_user_name
+  customDomain:
+    domainName: api.soulandmindconsultant.com
+    basePath: 'v1'
+    stage: ${self:provider.stage}
+    certificateName: soulandmindconsultant.com
+    createRoute53Record: true
 
 functions:
   hello:
@@ -125,4 +131,5 @@ functions:
 
 plugins:
   - serverless-offline
+  - serverless-domain-manager
 
