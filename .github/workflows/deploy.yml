@@ -42,7 +42,7 @@ jobs:
         run: serverless deploy --region eu-west-1 --verbose
       - name: Install frontend npm dependencies
         working-directory: ./notes-frontend
-        run: npm install
+        run: npm install --legacy-peer-deps
       - name: Build frontend app
         working-directory: ./notes-frontend
         run: npm run build
