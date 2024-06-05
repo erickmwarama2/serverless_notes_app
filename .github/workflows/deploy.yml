@@ -46,27 +46,15 @@ jobs:
       - name: Build frontend app
         working-directory: ./notes-frontend
         run: npm run build
-      - uses: shallwefootball/s3-upload-action@master
+      - uses: Noelware/s3-action@master
         name: upload to s3
         with:
-            aws_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-            aws_secret_access_key: ${{ secrets.AWS_ACCESS_SECRET }}
-            aws_bucket: soulandmindconsultant.com
-            source_dir: ./notes-frontend/public/scripts
-            destination_dir: scripts
-      - uses: shallwefootball/s3-upload-action@master
-        name: upload to s3
-        with:
-            aws_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-            aws_secret_access_key: ${{ secrets.AWS_ACCESS_SECRET }}
-            aws_bucket: soulandmindconsultant.com
-            source_dir: ./notes-frontend/public/styles
-            destination_dir: styles
-      - uses: shallwefootball/s3-upload-action@master
-        name: upload to s3
-        with:
-            aws_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-            aws_secret_access_key: ${{ secrets.AWS_ACCESS_SECRET }}
-            aws_bucket: soulandmindconsultant.com
-            source_dir: ./notes-frontend/public/index.html
-            destination_dir: index.html
+            access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+            secret-key: ${{ secrets.AWS_ACCESS_SECRET }}
+            bucket: soulandmindconsultant.com
+            directories: |
+              ./notes-frontend/public/scripts
+              ./notes-frontend/public/styles
+            files: |
+              ./notes-frontend/public/index.html
+            region: eu-west-1
