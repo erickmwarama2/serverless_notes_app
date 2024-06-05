@@ -54,6 +54,7 @@ jobs:
           aws-bucket: soulandmindconsultant.com
           file-path: ./notes-frontend/public/index.html
           destination-dir: /
+          bucket-root: /
       - uses: shallwefootball/s3-upload-action@master
         name: upload to s3
         with:
