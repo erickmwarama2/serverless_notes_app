@@ -52,4 +52,4 @@ jobs:
             aws_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
             aws_secret_access_key: ${{ secrets.AWS_ACCESS_SECRET }}
             aws_bucket: soulandmindconsultant.com
-            source_dir: ./notes-frontend/public
+            source_dir: ./notes-frontend/public/
