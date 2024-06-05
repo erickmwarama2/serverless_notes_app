@@ -46,6 +46,14 @@ jobs:
       - name: Build frontend app
         working-directory: ./notes-frontend
         run: npm run build
+      - uses: hkusu/s3-upload-action@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_ACCESS_SECRET }}
+          aws-region: eu-west-1
+          aws-bucket: soulandmindconsultant.com
+          file-path: ./notes-frontend/public/index.html
+          destination-dir: /
       - uses: shallwefootball/s3-upload-action@master
         name: upload to s3
         with:
@@ -62,10 +70,10 @@ jobs:
             aws_bucket: soulandmindconsultant.com
             source_dir: ./notes-frontend/public/styles
             destination_dir: styles
-      - uses: shallwefootball/s3-upload-action@master
-        name: upload to s3
-        with:
-            aws_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-            aws_secret_access_key: ${{ secrets.AWS_ACCESS_SECRET }}
-            aws_bucket: soulandmindconsultant.com
-            source_dir: ./notes-frontend/public/index.html
+      # - uses: shallwefootball/s3-upload-action@master
+      #   name: upload to s3
+      #   with:
+      #       aws_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      #       aws_secret_access_key: ${{ secrets.AWS_ACCESS_SECRET }}
+      #       aws_bucket: soulandmindconsultant.com
+      #       source_dir: ./notes-frontend/public/index.html
