@@ -55,6 +55,7 @@ jobs:
           file-path: ./notes-frontend/public/index.html
           destination-dir: /
           bucket-root: /
+          content-type: text/html
       - uses: shallwefootball/s3-upload-action@master
         name: upload to s3
         with:
@@ -71,10 +72,3 @@ jobs:
             aws_bucket: webapp-2-bucket
             source_dir: ./notes-frontend/public/styles
             destination_dir: styles
-      # - uses: shallwefootball/s3-upload-action@master
-      #   name: upload to s3
-      #   with:
-      #       aws_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      #       aws_secret_access_key: ${{ secrets.AWS_ACCESS_SECRET }}
-      #       aws_bucket: soulandmindconsultant.com
-      #       source_dir: ./notes-frontend/public/index.html
