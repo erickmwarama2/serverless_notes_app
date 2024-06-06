@@ -3,7 +3,7 @@ var webpackMerge = require('webpack-merge');
 var commonConfig = require('./webpack.config.common.js');
 const path = require('path');
 
-const API_ROOT = 'https://soulandmindconsultant.com';
+const API_ROOT = 'https://api.soulandmindconsultant.com';
 const STAGE = '/v1';
 const METADATA = webpackMerge(commonConfig.metadata, {
     API_ROOT: API_ROOT,
