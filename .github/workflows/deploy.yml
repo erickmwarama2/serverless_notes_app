@@ -54,7 +54,7 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_ACCESS_SECRET }}
           aws-region: eu-west-1
-          aws-bucket: webapp-2-bucket
+          aws-bucket: soulandmindconsultant.com
           file-path: ./notes-frontend/public/index.html
           destination-dir: /
           bucket-root: /
@@ -64,7 +64,7 @@ jobs:
         with:
             aws_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
             aws_secret_access_key: ${{ secrets.AWS_ACCESS_SECRET }}
-            aws_bucket: webapp-2-bucket
+            aws_bucket: soulandmindconsultant.com
             source_dir: ./notes-frontend/public/scripts
             destination_dir: scripts
       - uses: shallwefootball/s3-upload-action@master
@@ -72,6 +72,6 @@ jobs:
         with:
             aws_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
             aws_secret_access_key: ${{ secrets.AWS_ACCESS_SECRET }}
-            aws_bucket: webapp-2-bucket
+            aws_bucket: soulandmindconsultant.com
             source_dir: ./notes-frontend/public/styles
             destination_dir: styles
