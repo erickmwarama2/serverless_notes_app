@@ -38,7 +38,8 @@ jobs:
         working-directory: ./notes-backend
         run: npm install
       - name: Install custom domain
-        run: sls create_domain
+        working-directory: ./notes-backend
+        run: serverless create_domain
       - name: Deploy service
         working-directory: ./notes-backend
         run: serverless deploy --region eu-west-1 --verbose
