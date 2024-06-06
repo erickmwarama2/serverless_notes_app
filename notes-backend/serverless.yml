@@ -69,7 +69,7 @@ custom:
     - app_user_id
     - app_user_name
   customDomain:
-    domainName: soulandmindconsultant.com
+    domainName: api.soulandmindconsultant.com
     basePath: v1
     stage: ${self:provider.stage}
     certificateName: soulandmindconsultant.com
