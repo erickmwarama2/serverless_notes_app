@@ -37,11 +37,11 @@ jobs:
       - name: Install npm dependencies
         working-directory: ./notes-backend
         run: npm install
+      - name: Install custom domain
+        run: sls create_domain
       - name: Deploy service
         working-directory: ./notes-backend
         run: serverless deploy --region eu-west-1 --verbose
-      - name: Install custom domain
-        run: sls create_domain
       - name: Install frontend npm dependencies
         working-directory: ./notes-frontend
         run: npm install --legacy-peer-deps
