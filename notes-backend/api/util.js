@@ -12,8 +12,13 @@ const getUserName = (headers) => {
     return headers.app_user_name;
 }
 
+const getIdToken = (headers) => {
+    return headers.Authorization;
+}
+
 module.exports = {
     getResponseHeaders,
     getUserId,
     getUserName,
+    getIdToken,
 };
