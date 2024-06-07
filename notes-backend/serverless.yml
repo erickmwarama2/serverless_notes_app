@@ -57,15 +57,15 @@ resources:
             Projection:
               ProjectionType: ALL
 
-  GatewayResponseDefault4XX:
-    Type: AWS::ApiGateway::GatewayResponse
-    Properties:
-      ResponseParameters:
-        gatewayresponse.header.Access-Control-Allow-Origin: '*'
-        gatewayresponse.header.Access-Control-Allow-Headers: '*'
-      ResponseType: DEFAULT_4XX
-      RestApiId:
-        Ref: 'ApiGatewayRestApi'
+    GatewayResponseDefault4XX:
+      Type: AWS::ApiGateway::GatewayResponse
+      Properties:
+        ResponseParameters:
+          gatewayresponse.header.Access-Control-Allow-Origin: '*'
+          gatewayresponse.header.Access-Control-Allow-Headers: '*'
+        ResponseType: DEFAULT_4XX
+        RestApiId:
+          Ref: 'ApiGatewayRestApi'
 
 custom:
   allowedHeaders:
@@ -102,55 +102,60 @@ functions:
   add-note:
     handler: api/add-note.handler
     description: POST /note
-    authorizer: aws_iam
     events:
       - http:
           path: note
           method: post
+          authorizer:
+            type: aws_iam
           cors:
             origin: '*'
             headers: ${self:custom.allowedHeaders}
   update-note:
     handler: api/update-note.handler
     description: PATCH /note
-    authorizer: aws_iam
     events:
       - http:
           path: note
           method: patch
+          authorizer:
+            type: aws_iam
           cors:
             origin: '*'
             headers: ${self:custom.allowedHeaders}
   get-notes:
     handler: api/get-notes.handler
     description: GET /note
-    authorizer: aws_iam
     events:
       - http:
           path: notes
           method: get
+          authorizer:
+            type: aws_iam
           cors:
             origin: '*'
             headers: ${self:custom.allowedHeaders}
   get-note:
     handler: api/get-note.handler
     description: GET /note
-    authorizer: aws_iam
     events:
       - http:
           path: note/n/{note_id}
           method: get
+          authorizer:
+            type: aws_iam
           cors:
             origin: '*'
             headers: ${self:custom.allowedHeaders}
   delete-note:
     handler: api/delete-note.handler
     description: DELETE /note
-    authorizer: aws_iam
     events:
       - http:
           path: note/t/{timestamp}
           method: delete
+          authorizer:
+            type: aws_iam
           cors:
             origin: '*'
             headers: ${self:custom.allowedHeaders}
