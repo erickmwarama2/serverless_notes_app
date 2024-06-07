@@ -12,6 +12,7 @@ provider:
   endpointType: REGIONAL
   environment:
     NOTES_TABLE: ${self:service}-${opt:stage, self:provider.stage}
+    COGNITO_IDENTITY_POOL_ID: eu-west-1:5c02a097-7227-44f2-9168-2b5761cbf2ef
   iam:
     role:
       statements:
@@ -56,6 +57,16 @@ resources:
             Projection:
               ProjectionType: ALL
 
+  GatewayResponseDefault4XX:
+    Type: AWS::ApiGateway::GatewayResponse
+    Properties:
+      ResponseParameters:
+        gatewayresponse.header.Access-Control-Allow-Origin: '*'
+        gatewayresponse.header.Access-Control-Allow-Headers: '*'
+      ResponseType: DEFAULT_4XX
+      RestApiId:
+        Ref: 'ApiGatewayRestApi'
+
 custom:
   allowedHeaders:
     - Accept
@@ -78,9 +89,20 @@ custom:
 functions:
   hello:
     handler: handler.hello
+  authenticate-google:
+    handler: authenticate-google.handler
+    description: Google IDP Authentication
+    events:
+      - http:
+          path: auth
+          method: get
+          cors:
+            origin : '*'
+            headers: ${self:custom.allowedHeaders}
   add-note:
     handler: api/add-note.handler
     description: POST /note
+    authorizer: aws_iam
     events:
       - http:
           path: note
@@ -91,6 +113,7 @@ functions:
   update-note:
     handler: api/update-note.handler
     description: PATCH /note
+    authorizer: aws_iam
     events:
       - http:
           path: note
@@ -101,6 +124,7 @@ functions:
   get-notes:
     handler: api/get-notes.handler
     description: GET /note
+    authorizer: aws_iam
     events:
       - http:
           path: notes
@@ -111,6 +135,7 @@ functions:
   get-note:
     handler: api/get-note.handler
     description: GET /note
+    authorizer: aws_iam
     events:
       - http:
           path: note/n/{note_id}
@@ -121,6 +146,7 @@ functions:
   delete-note:
     handler: api/delete-note.handler
     description: DELETE /note
+    authorizer: aws_iam
     events:
       - http:
           path: note/t/{timestamp}
