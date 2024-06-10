@@ -16,13 +16,30 @@ export class AuthService {
     }
 
     /**
-     * 
-     * @param id_token 
-     * 
+     *
+     * @param id_token
+     *
      * Set IDP id_token and aws credentials here
      */
     async setCredentials(id_token) {
-        //To be implemented
+        try {
+            let options = {
+                headers: {
+                    Authorization: id_token
+                }
+            };
+
+            let endpoint = API_ROOT + STAGE + '/auth';
+            let credentials = await this.httpClient.get(endpoint, options).toPromise();
+
+            localStorage.setItem('id_token', id_token);
+            localStorage.setItem('aws', JSON.stringify(credentials));
+            return;
+        } catch (err) {
+            localStorage.removeItem('id_token');
+            localStorage.removeItem('aws');
+            throw err;
+        }
     }
 
     getCredentials() {
@@ -34,9 +51,9 @@ export class AuthService {
     }
 
     /**
-     * In addition to AWS credentials expiring after a given amount of time, 
-     * the login token from the identity provider will also expire. 
-     * Once this token expires, it will not be usable to refresh AWS credentials, 
+     * In addition to AWS credentials expiring after a given amount of time,
+     * the login token from the identity provider will also expire.
+     * Once this token expires, it will not be usable to refresh AWS credentials,
      * and another token will be needed. The SDK does not manage refreshing of the token value
      */
     async isLoggedIn() {
@@ -68,7 +85,7 @@ export class AuthService {
     async logout() {
         var googleAuth = gapi.auth2.getAuthInstance();
         await googleAuth.signOut();
-        
+
         localStorage.removeItem('id_token');
         localStorage.removeItem('aws');
         this.router.navigate(['login']);
