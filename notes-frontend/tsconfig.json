@@ -12,7 +12,7 @@
       "dom"
     ],
     "noImplicitAny": false,
-    "suppressImplicitAnyIndexErrors": true,
+    "ignoreDeprecations": "5.0",
     "sourceMap": false
   }
 }
